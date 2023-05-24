@@ -1,7 +1,9 @@
+import Header from './components/Header'
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Inter, Montserrat } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
+const montserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Metaview Clone',
@@ -15,7 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${inter.className} debug-screens`}>{children}</body>
+      <body
+        className={`${montserrat.className} debug-screens min-h-screen flex flex-col bg-light`}
+      >
+        <Header />
+        <main className='flex-1 relative top-40 container'>{children}</main>
+      </body>
     </html>
   )
 }

@@ -24,6 +24,10 @@ module.exports = {
         opacity: '100%',
       },
     },
+    container: {
+      center: true,
+      padding: '3.5rem',
+    }
   },
   plugins: [require('tailwindcss-debug-screens')],
 }
