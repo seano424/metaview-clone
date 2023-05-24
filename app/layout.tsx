@@ -1,8 +1,7 @@
 import Header from './components/Header'
 import './globals.css'
-import { Inter, Montserrat } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata = {
@@ -18,10 +17,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${montserrat.className} debug-screens min-h-screen flex flex-col bg-light`}
+        className={`${montserrat.className} debug-screens min-h-screen flex flex-col bg-light container`}
       >
         <Header />
-        <main className='flex-1 relative top-40 container'>{children}</main>
+        <main className='flex-1 relative top-40 px-12'>{children}</main>
       </body>
     </html>
   )

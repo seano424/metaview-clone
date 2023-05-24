@@ -70,27 +70,27 @@ export default function Header() {
 
   const headerContainer = {
     initial: {
-      paddingLeft: '3.5rem',
-      paddingRight: '3.5rem',
+      paddingLeft: '3rem',
+      paddingRight: '3rem',
     },
     animate: {
-      paddingLeft: isScrolling ? '2.5rem' : '3.5rem',
-      paddingRight: isScrolling ? '2.5rem' : '3.5rem',
-      transition: { duration: 0.5, ease: 'linear' },
+      paddingLeft: isScrolling ? '2.5rem' : '3rem',
+      paddingRight: isScrolling ? '2.5rem' : '3rem',
+      transition: { duration: 0.8, ease: 'linear' },
     },
   }
 
   const navContainer = {
     initial: {
-      paddingLeft: '3.5rem',
-      paddingRight: '3.5rem',
+      paddingLeft: '3rem',
+      paddingRight: '3rem',
       backgroundColor: 'transparent',
     },
     animate: {
       backgroundColor: isScrolling ? 'white' : 'transparent',
-      paddingLeft: isScrolling ? '2.5rem' : '3.5rem',
-      paddingRight: isScrolling ? '2.5rem' : '3.5rem',
-      transition: { duration: 0.8, ease: 'linear' },
+      paddingLeft: isScrolling ? '2.5rem' : '3rem',
+      paddingRight: isScrolling ? '2.5rem' : '3rem',
+      transition: { duration: 2, ease: 'linear' },
     },
   }
 
@@ -103,13 +103,15 @@ export default function Header() {
     >
       <motion.nav
         variants={navContainer}
-        className='flex justify-between items-center container py-4 rounded-full'
+        className='flex justify-between items-center w-full py-4 rounded-full'
       >
         <Link href={'/'} className='flex items-center gap-2'>
           <Image src={'/logo.svg'} alt='Metaview Logo' width={30} height={30} />
-          <span className='font-semibold text-lg'>Metaview</span>
+          <span className='font-semibold text-lg hidden xl:block'>
+            Metaview
+          </span>
         </Link>
-        <ul className='flex gap-8 font-medium'>
+        <ul className='flex gap-8 font-medium text-sm xl:text-base'>
           {mainNavItems.map((item) => {
             return item.subItems ? (
               <button key={item.title} className='flex gap-2 items-center'>
@@ -123,7 +125,7 @@ export default function Header() {
             )
           })}
         </ul>
-        <div className='flex gap-8 items-center font-medium'>
+        <div className='flex gap-8 items-center font-medium text-sm xl:text-base'>
           <Link href='/'>Sign in</Link>
           <Link
             className='rounded-3xl bg-green py-2 px-3 border border-blue/10'
