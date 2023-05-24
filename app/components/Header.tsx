@@ -1,7 +1,10 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
-import { motion, useScroll } from 'framer-motion'
 
 const mainNavItems = [
   {
@@ -51,9 +54,57 @@ const mainNavItems = [
 ]
 
 export default function Header() {
+  const [isScrolling, setIsScrolling] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolling(window.scrollY > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const headerContainer = {
+    initial: {
+      paddingLeft: '3.5rem',
+      paddingRight: '3.5rem',
+    },
+    animate: {
+      paddingLeft: isScrolling ? '2.5rem' : '3.5rem',
+      paddingRight: isScrolling ? '2.5rem' : '3.5rem',
+      transition: { duration: 0.5, ease: 'linear' },
+    },
+  }
+
+  const navContainer = {
+    initial: {
+      paddingLeft: '3.5rem',
+      paddingRight: '3.5rem',
+      backgroundColor: 'transparent',
+    },
+    animate: {
+      backgroundColor: isScrolling ? 'white' : 'transparent',
+      paddingLeft: isScrolling ? '2.5rem' : '3.5rem',
+      paddingRight: isScrolling ? '2.5rem' : '3.5rem',
+      transition: { duration: 0.8, ease: 'linear' },
+    },
+  }
+
   return (
-    <motion.header className='container fixed left-0 right-0 h-40 flex items-center z-50 pr-10 pl-10'>
-      <motion.nav className='bg-light flex justify-between items-center container py-2 border pr-10 pl-10 rounded-full'>
+    <motion.header
+      variants={headerContainer}
+      initial='initial'
+      animate='animate'
+      className='container fixed left-0 right-0 h-40 flex items-center z-50'
+    >
+      <motion.nav
+        variants={navContainer}
+        className='flex justify-between items-center container py-4 rounded-full'
+      >
         <Link href={'/'} className='flex items-center gap-2'>
           <Image src={'/logo.svg'} alt='Metaview Logo' width={30} height={30} />
           <span className='font-semibold text-lg'>Metaview</span>
